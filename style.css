@@ -1,0 +1,433 @@
+:root{
+    --bg-body: #1E213F;
+    --text: #D7E0FF;
+    --text-dark: #1E213F;
+    --bg: #FFFFFF;
+    --input: #EFF1FA;
+    --background-timer: #161932;
+    --settings: #161932;
+    --default: #F87070;
+    --blue: #70F3F8;
+    --purple: #D881F8;
+
+}
+*,*::before,*::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    font-family: "Space Mono", monospace;
+    background-color: var(--bg-body);
+    overflow-x: hidden;
+    position: relative;
+}
+footer{
+    color: var(--bg);
+    padding: 1rem;
+}
+a{
+    color: var(--bg);
+    text-decoration: none;
+}
+.options button.active{
+    background-color: var(--default);
+    color: var(--background-timer);
+}
+body.default .options button.active{
+    background-color: var(--default);
+}
+body.default .options button:hover,body.default .options button:focus{
+    background-color: var(--default);
+    color: var(--background-timer);
+}
+body.default .circle{
+    background: conic-gradient(var(--default) 360deg, var(--background-timer) 0deg);
+}
+body.default .apply{
+    background-color: var(--default);
+}
+body.blue .apply{
+    background-color: var(--blue);
+}
+body.purple .apply{
+    background-color: var(--purple);
+}
+body.blue .circle{
+    background: conic-gradient(var(--blue) 360deg, var(--background-timer) 0deg);
+}
+body.purple .circle{
+    background: conic-gradient(var(--purple) 360deg, var(--background-timer) 0deg);
+}
+body.blue .options button.active{
+    background-color: var(--blue);
+}
+body.blue .options button:hover,body.blue .options button:focus{
+    background-color: var(--blue);
+    color: var(--background-timer);
+}
+body.purple .options button.active{
+    background-color: var(--purple);
+}
+body.purple .options button:hover,body.purple .options button:focus{
+    background-color: var(--purple);
+    color: var(--background-timer);
+}
+
+h1,h2{
+    color: var(--text);
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    height: 100%;
+    margin-top: 5rem;
+    max-width: 600px;
+    width: 100%;
+    overflow-x: hidden;
+}
+button{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-family: inherit;
+    color: currentColor;
+}
+.options button{
+    background-color: transparent;
+    border: none;
+    color: rgb(109, 101, 101);
+    font-weight: 900;
+    font-family: inherit;
+    font-size: 1.1rem;
+    padding: 1rem ;
+    border-radius: 50px;
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+/* CSS to style the "Session Progress" button and session count box */
+.session-progress {
+    display: flex;
+    align-items: center;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: system-ui;
+}
+
+#sessionProgressButton {
+    margin-right: 10px; /* Adjust spacing as needed */
+
+}
+
+.session-count {
+    background-color: #f0f0f0;
+    color: #0a0909;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+
+.options{
+    padding: 1rem;
+    border-radius: 50px;
+    background-color: var(--background-timer);
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+
+}
+
+.timer{
+    max-width:  500px;
+    height: 500px;
+    width: 100%;
+    border-radius: 50%;
+    background-color: var(--bg-body);
+    background-image: linear-gradient(280deg,var(--bg-body),var(--background-timer));
+    overflow: hidden;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(131, 131, 220, 0.256) 0px 10px 36px 0px, rgba(131, 131, 220, 0.256) 0px 0px 0px 1px;
+}
+.circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--default);
+    position: relative;
+    width: 27rem;
+    height: 27rem;
+    max-width: 100%;
+    border-radius: 50%;
+    background: conic-gradient(var(--default) 360deg, var(--background-timer) 0deg);
+}
+.input__field{
+    position: relative;
+}
+.timer_content{
+    width: 90%;
+  height: 90%;
+  border-radius: 50%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-timer);
+    color: var(--text);
+    text-align: center;
+}
+h2{
+    font-size: 5rem;
+    display: flex;
+}
+.timer_content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.timer_content button{
+    letter-spacing:1.5rem;
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+/* modal */
+.backdrop{
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    z-index: -1;
+    height: 300%;
+    width: 100%;
+    left: -50%;
+    top: -50%;
+}
+.modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,9%) scale(0);
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ;
+}
+.modal.modalActive{
+    transform: translate(-50%,-50%) scale(1);
+    opacity: 1;
+}
+.modal__content{
+    z-index: 10;
+    background-color: var(--bg);
+    padding: 2rem;
+    border-radius: 30px;
+    max-width: 600px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: var(--text) 0px 2px 4px 0px, var(--text) 0px 2px 16px 0px;
+}
+.modal__header{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.modal__body{
+    margin-top: 2rem;
+}
+.modal__header h2{
+    font-size: 1.9rem;
+ 
+}
+.modal__body h3{
+    letter-spacing: 0.5em;
+}
+.modal__header h2,.modal__body h3{
+    text-transform: uppercase;
+    color: var(--background-timer);
+}
+.time{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+.time__container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.form__field{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.form__field label{
+    color: var(--text);
+    font-weight: 600;
+  
+}
+.form__field input{
+    background-color: var(--input);
+    padding:1em 2rem 1em 1em;
+    width: 100%;
+    border: none;
+    margin-top: 1em;
+    border-radius: 10px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.changeTime{
+    position: absolute;
+    right: 0;
+    top: 33px;
+}
+.top{
+    right: 10px;
+    bottom: 100%;
+    position: absolute;
+    transition: all 200ms ease-in-out;
+}
+.top img{
+    display: block;
+}
+.bottom{
+    right: 10px;
+    transition: all 200ms ease-in-out;
+    position: absolute; 
+}
+.top:hover > img,.bottom:hover img{
+    transform: scale(1.1);
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 0;
+    border-top: 1px solid var(--text);
+    align-items: center;
+}
+.font__family{
+    display: flex;
+    gap: 1rem;
+}
+.font__family button{
+    border-radius: 50%;
+    background-color: var(--input);
+    padding: 1rem;
+    transition: all 200ms;
+}
+.font__family button:hover{
+    background-color: var(--background-timer);
+    color: var(--bg);
+}
+.font__family button.fontActive{
+    background-color: var(--background-timer);
+    color: var(--bg);
+}
+.color__container button{
+    padding: 1rem;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+
+}
+.color__container button i{
+    opacity: 0;
+    pointer-events: none;
+    font-size: 1.1rem;
+}
+.color__container button.colorActive i{
+   opacity: 1;
+}
+.color__container button.default{
+    background-color: var(--default) !important;
+}
+.color__container button.blue{
+    background-color: var(--blue) !important;
+}
+.color__container button.purple{
+    background-color: var(--purple) !important;
+}
+.apply{
+    background-color: var(--default);
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    text-transform: uppercase;
+    position: absolute;
+    left:50%;
+    font-size: 1.1rem;
+    transform: translateX(-50%);
+}
+body{
+    position: relative;
+}
+.RobotoSlab{
+    font-family: "Roboto Slab", serif;
+}
+.KumbhSans{
+    font-family: "Kumbh Sans", sans-serif;
+}
+@media (max-width:600px) {
+    .time__container{
+        flex-direction: column;
+    }
+    .form__field{
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .container{
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .backdrop{
+        width: 100%;
+        height: 100%;
+    }
+}
+@media (max-width:500px) {
+    .options{
+        padding: 0.5rem;
+    }
+    .options button{
+        padding-inline: 0.5rem;
+        font-size: 0.8rem;
+    }
+    .timer{
+        width: 350px;
+        height: 350px;
+
+    }
+    .circle{
+        width:20rem;
+        height: 20rem;
+    }
+}
